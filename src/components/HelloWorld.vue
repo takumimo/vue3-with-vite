@@ -1,40 +1,25 @@
 <script setup>
-import { ref } from 'vue'
+const props = defineProps({
+  modelValue: String,
+});
 
-defineProps({
-  msg: String
-})
+const emit = defineEmits(["update:modelValue"]);
 
-const count = ref(0)
+const updateValue = (event) => {
+  emit("update:modelValue", event.target.value);
+};
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
+  <div class="main">
+    <h2>入力欄</h2>
+    <input type="text" :value="modelValue" @input="updateValue" />
   </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
 </template>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
+.main {
+  background-color: gold;
+  color: black;
 }
 </style>
